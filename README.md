@@ -1,3 +1,6 @@
 # 2D-Tutoriels
+Quelques exerices de base avec le langage PureBasic.
 
-- Exercice de tir 
+- Afficher un sprite.
+- Déplacer un sprite.
+- Exercice de tir.
