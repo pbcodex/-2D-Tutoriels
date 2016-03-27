@@ -127,7 +127,7 @@ Repeat  ;Evenement du jeu
   StartDrawing(SpriteOutput(Info))
   Box(0, 0, 800, 30, RGB(128, 128, 128))
   DrawingMode(#PB_2DDrawing_Transparent)
-  DrawText(5, 5, "[Esc] Quitter le jeu  -  [Espace] Tirer  -  Position x du vaisseai " + ShipX, RGB(220, 220, 220))
+  DrawText(5, 5, "[Esc] Quitter le jeu  -  [Espace] Tirer  -  Position x du vaisseau " + ShipX, RGB(220, 220, 220))
   StopDrawing()
 
   DisplaySprite(Info, 0, 570)
@@ -174,7 +174,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 91
-; FirstLine = 71
+; CursorPosition = 129
+; FirstLine = 92
 ; EnableUnicode
 ; EnableXP
