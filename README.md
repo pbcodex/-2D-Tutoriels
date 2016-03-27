@@ -1,3 +1,3 @@
-# -2D-Tutoriels
+# 2D-Tutoriels
 
--  Exercice de tir 
+- Exercice de tir 
