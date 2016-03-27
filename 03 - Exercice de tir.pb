@@ -46,7 +46,7 @@ Global Event, CountLoop
 Global FolderImages.s = "assets\/images\/"
 
 ;Initialisation de l'environnement 2D
-InitSprite() : InitKeyboard()
+InitSprite() : InitKeyboard() 
 
 ;Creation de la surface de jeu
 OpenWindow(#MainForm, 0, 0, 800, 600, "", #PB_Window_SystemMenu|#PB_Window_ScreenCentered)
