@@ -67,7 +67,7 @@ Repeat  ;Evenement du jeu
   ; 2 - Affichage du sprite
   DisplayTransparentSprite(Ship, 350, 500)
      
-  ; 3 - Controle clavier: calcul de la position des sprites
+  ; 3 - Examinons si une touche du clavier est préssée
   ExamineKeyboard()
     
   ;DEBUG
@@ -85,6 +85,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 69
+; FirstLine = 30
 ; EnableUnicode
 ; EnableXP
