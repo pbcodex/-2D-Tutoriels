@@ -46,7 +46,7 @@ Global Event, CountLoop
 Global FolderImages.s = "assets\/images\/"
 
 ;Initialisation de l'environnement 2D
-InitSprite() : InitKeyboard() 
+InitSprite() : InitKeyboard()
 
 ;Creation de la surface de jeu
 OpenWindow(#MainForm, 0, 0, 800, 600, "", #PB_Window_SystemMenu|#PB_Window_ScreenCentered)
@@ -125,7 +125,7 @@ Repeat  ;Evenement du jeu
     EndIf      
   Next
       
-  ; 3 - Controle clavier: calcul de la position des sprites
+  ; 3 - Examinons si une touche du clavier est préssée
   ExamineKeyboard()
   
   ;Déplacement du vaisseau avec les touches droite ou gauche
@@ -169,6 +169,7 @@ Repeat  ;Evenement du jeu
   CountLoop + 1
   SetWindowTitle(#MainForm, "Nombre de boucles : " + CountLoop + " - Position x du vaisseau " + ShipX + " - Nombre de vie de l'ennemi " + EnemyLife)  
   
+  ; 4 - Inversion des buffers d'affichage  
   ;Pendant qu'une image est affiché la suivant se prépare dans une zone invisible.
   ;FlipBuffers() permet d'alterner entre l'image affichée et celle en cours de préparation.
   ;La zone invisible est désormais visible et vice versa, 
@@ -176,6 +177,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 43
+; CursorPosition = 127
+; FirstLine = 45
 ; EnableUnicode
 ; EnableXP
