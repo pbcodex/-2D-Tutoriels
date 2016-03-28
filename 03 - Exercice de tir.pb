@@ -108,12 +108,18 @@ Repeat  ;Evenement du jeu
     Shoots()\y - 2 ;Chaque shoot remonte de deux  pixels
     DisplaySprite(Shoots()\Sprite, Shoots()\x, Shoots()\y)
     
-    ;Il y a t'il collision entre un shoot et l'ennemi ?
     ;Un tir sort t'il en haut de l'écran ?
-    ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
-    If (EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, Shoots()\Sprite, Shoots()\x, Shoots()\y)) Or Shoots()\y < 0        
+    If Shoots()\y < 0
       FreeSprite(Shoots()\Sprite) ;Destruction du tir
-      DeleteElement(Shoots())     ;Destruction des information du tir
+      DeleteElement(Shoots(), #True)     ;Destruction des information du tir
+    EndIf 
+       
+    
+    ;Il y a t'il collision entre un shoot et l'ennemi
+    ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
+    If (EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, Shoots()\Sprite, Shoots()\x, Shoots()\y))              
+      FreeSprite(Shoots()\Sprite) ;Destruction du tir
+      DeleteElement(Shoots(), #True)     ;Destruction des information du tir
       
       ;Diminution du nombre de vie ou destruction de l'ennemi
       If EnemyLife > 0
@@ -177,7 +183,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 132
-; FirstLine = 127
+; CursorPosition = 113
+; FirstLine = 85
 ; EnableUnicode
 ; EnableXP
