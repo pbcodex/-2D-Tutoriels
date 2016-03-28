@@ -128,7 +128,7 @@ Repeat  ;Evenement du jeu
   
   ;Déplacement du vaisseau avec les touches droite ou gauche
   ;Le vaisseau ne doit pas sortir des limites gauche et droite de la surface du jeu
-  If KeyboardPushed(#PB_Key_Left) And ShipX > SpriteWidth(Ship) 
+  If KeyboardPushed(#PB_Key_Left) And ShipX > 0
     ShipX - 2 ;Le vaisseau se déplace à gauche de 2 pixels
   EndIf
   
@@ -165,7 +165,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 123
-; FirstLine = 84
+; CursorPosition = 130
+; FirstLine = 105
 ; EnableUnicode
 ; EnableXP
