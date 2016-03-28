@@ -106,30 +106,33 @@ Repeat  ;Evenement du jeu
   ;Affichage des shoots
   ForEach PlayerShoots()
     PlayerShoots()\y - 2 ;Chaque shoot remonte de deux  pixels
-    DisplaySprite(PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y)
     
-    ;Un tir sort t'il en haut de l'écran ?
+    ;Ce tir sort t'il en haut de l'écran ?
     If PlayerShoots()\y < 0
       FreeSprite(PlayerShoots()\Sprite) ;Destruction du tir
       DeleteElement(PlayerShoots(), #True) ;Destruction des information du tir
-    EndIf 
-       
-    ;Il y a t'il collision entre un shoot et l'ennemi
-    ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
-    If (EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y))              
-      FreeSprite(PlayerShoots()\Sprite) ;Destruction du tir
-      DeleteElement(PlayerShoots(), #True) ;Destruction des information du tir
       
-      ;Diminution du nombre de vie ou destruction de l'ennemi
-      If EnemyLife > 0
+    Else
+      
+      DisplaySprite(PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y)
+      
+      ;Il y a t'il collision entre un shoot et l'ennemi
+      ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
+      If EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y)
+        FreeSprite(PlayerShoots()\Sprite) ;Destruction du tir
+        DeleteElement(PlayerShoots(), #True) ;Destruction des information du tir
+        
+        ;Diminution du nombre de vie ou destruction de l'ennemi
         EnemyLife - 1
-      ElseIf EnemyLife = 0
-        EnemyLife = -1 ;C'est terminé pour lui 
-        FreeSprite(Enemy)
-      EndIf
-    EndIf      
+        
+        If EnemyLife = 0
+          EnemyLife = -1 ;C'est terminé pour lui 
+          FreeSprite(Enemy)
+        EndIf
+      EndIf      
+    EndIf
   Next
-      
+  
   ; 3 - Examinons si une touche du clavier est préssée
   ExamineKeyboard()
   
@@ -142,7 +145,7 @@ Repeat  ;Evenement du jeu
   If KeyboardPushed(#PB_Key_Right) And ShipX < ScreenWidth() - SpriteWidth(Ship)
     ShipX + 2 ;Le vaisseau se déplace à droite de 2 pixels
   EndIf
-    
+  
   ;Un tir est effectué avec la touche Espace
   ;Le tir doit être autorisé 
   If KeyboardPushed(#PB_Key_Space) And ShootAuthorization = #True
@@ -166,7 +169,7 @@ Repeat  ;Evenement du jeu
   Else
     ShootAuthorization = #False 
   EndIf
-    
+  
   ;DEBUG
   ;Le jeu s'éxécute dans une boucle infini. La touche Escape permet de quitter cette boucle
   ;Pour se rendre compte de l'évolution de la position x du vaisseau, on va afficher x dans le titre de la fenetre
@@ -182,7 +185,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 157
-; FirstLine = 133
+; CursorPosition = 120
+; FirstLine = 116
 ; EnableUnicode
 ; EnableXP
