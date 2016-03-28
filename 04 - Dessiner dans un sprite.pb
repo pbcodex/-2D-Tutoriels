@@ -33,7 +33,7 @@ Structure NewShoot
 EndStructure
 
 ;Stockage de tous les tirs dans une liste chainée
-Global NewList Shoots.NewShoot()
+Global NewList PlayerShoots.NewShoot()
 
 ;Autorisation de tir
 Global ShootAuthorization = #True
@@ -92,25 +92,32 @@ Repeat  ;Evenement du jeu
   EndIf
   
   ;Affichage des shoots
-  ForEach Shoots()
-    Shoots()\y - 2 ;Chaque shoot remonte de deux  pixels
-    DisplaySprite(Shoots()\Sprite, Shoots()\x, Shoots()\y)
+  ForEach PlayerShoots()
+    PlayerShoots()\y - 2 ;Chaque shoot remonte de deux  pixels
     
-    ;Il y a t'il collision entre un shoot et l'ennemi ?
-    ;Un tir sort t'il en haut de l'écran ?
-    ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
-    If (EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, Shoots()\Sprite, Shoots()\x, Shoots()\y)) Or Shoots()\y < 0        
-      FreeSprite(Shoots()\Sprite) ;Destruction du tir
-      DeleteElement(Shoots())     ;Destruction des information du tir
+    ;Ce tir sort t'il en haut de l'écran ?    
+    If PlayerShoots()\y < 0
+      FreeSprite(PlayerShoots()\Sprite) ;Destruction du tir
+      DeleteElement(PlayerShoots(), #True) ;Destruction des information du tir
       
-      ;Diminution du nombre de vie ou destruction de l'ennemi
-      If EnemyLife > 0
+    Else
+      
+      DisplaySprite(PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y)
+      
+      ;Il y a t'il collision entre un shoot et l'ennemi
+      ;   Syntaxe : SpriteCollision(#Sprite1, x1, y1, #Sprite2, x2, y2)
+      If EnemyLife > 0 And SpriteCollision(Enemy, EnemyX, EnemyY, PlayerShoots()\Sprite, PlayerShoots()\x, PlayerShoots()\y)
+        FreeSprite(PlayerShoots()\Sprite) ;Destruction du tir
+        DeleteElement(PlayerShoots(), #True) ;Destruction des information du tir
+        
+        ;Diminution du nombre de vie ou destruction de l'ennemi
         EnemyLife - 1
-      ElseIf EnemyLife = 0
-        EnemyLife = -1 ;C'est terminé pour lui 
-        FreeSprite(Enemy)
-      EndIf
-    EndIf      
+        
+        If EnemyLife = 0
+          FreeSprite(Enemy) ;C'est terminé pour lui
+        EndIf
+      EndIf      
+    EndIf
   Next
   
   ;Affichage du bandeau d'information
@@ -139,16 +146,16 @@ Repeat  ;Evenement du jeu
   ;Un tir est effectué avec la touche Espace
   ;Le tir doit être autorisé 
   If KeyboardPushed(#PB_Key_Space) And ShootAuthorization = #True
-    ;On ajoute ce tir dans la list des tirs Shoots() 
-    AddElement(Shoots())
+    ;On ajoute ce tir dans la list des tirs PlayerShoots() 
+    AddElement(PlayerShoots())
     
     ;Chaque tir part du milieu du vaisseau
     ;Création du nouveau sprite de tir à partir du sprite Shoot
-    Shoots()\Sprite = CopySprite(Shoot, #PB_Any) 
+    PlayerShoots()\Sprite = CopySprite(Shoot, #PB_Any) 
     
     ;Le nouveau tir est effectuté à partir du vaisseau
-    Shoots()\x = ShipX + SpriteWidth(Ship)/2 - SpriteWidth(Shoots()\Sprite)/2
-    Shoots()\y = 500
+    PlayerShoots()\x = ShipX + SpriteWidth(Ship)/2 - SpriteWidth(PlayerShoots()\Sprite)/2
+    PlayerShoots()\y = 500
     
     ShootTime = ElapsedMilliseconds()
   EndIf  
@@ -165,7 +172,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 130
-; FirstLine = 105
+; CursorPosition = 104
+; FirstLine = 80
 ; EnableUnicode
 ; EnableXP

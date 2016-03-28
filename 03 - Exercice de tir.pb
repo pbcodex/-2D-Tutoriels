@@ -126,8 +126,7 @@ Repeat  ;Evenement du jeu
         EnemyLife - 1
         
         If EnemyLife = 0
-          EnemyLife = -1 ;C'est terminé pour lui 
-          FreeSprite(Enemy)
+          FreeSprite(Enemy) ;C'est terminé pour lui
         EndIf
       EndIf      
     EndIf
@@ -185,7 +184,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 120
-; FirstLine = 116
+; CursorPosition = 157
+; FirstLine = 108
 ; EnableUnicode
 ; EnableXP
