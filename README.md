@@ -1,5 +1,5 @@
 # 2D-Tutoriels
-Quelques exerices avec le langage PureBasic.
+Quelques exercices simples pour des applications 2D codées avec le langage PureBasic.
 
 - 01 - Afficher un sprite.
 - 02 - Déplacer un sprite.
