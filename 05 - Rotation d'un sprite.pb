@@ -57,7 +57,7 @@ Global FolderImages.s = "assets\/images\/"
 InitSprite() : InitKeyboard()
 
 ;Creation de la surface de jeu
-OpenWindow(#MainForm, 0, 0, 800, 600, "Dessiner dans un sprite", #PB_Window_SystemMenu|#PB_Window_ScreenCentered)
+OpenWindow(#MainForm, 0, 0, 800, 600, "Rotation d'un sprite", #PB_Window_SystemMenu|#PB_Window_ScreenCentered)
 OpenWindowedScreen(WindowID(#MainForm), 0, 0, 800, 600)
 
 ;-Chargement et création des sprites
@@ -181,7 +181,7 @@ Repeat  ;Evenement du jeu
   
 Until KeyboardPushed(#PB_Key_Escape) ;La touche Escape permet de quitter le jeu
 ; IDE Options = PureBasic 5.42 LTS (Windows - x86)
-; CursorPosition = 181
-; FirstLine = 132
+; CursorPosition = 59
+; FirstLine = 37
 ; EnableUnicode
 ; EnableXP
